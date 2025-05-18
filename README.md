@@ -4,8 +4,6 @@
 
 This repository contains two main data engineering projects:
 1.  A web scraping script (`Kavya.py`) designed to extract product information for moisturizers from Dermstore.com and store it in various systems (CSV, HDFS, MySQL).
-2.  A data science notebook (`Project_Work.ipynb`) focused on predicting house prices in King County, USA, using machine learning techniques.
-
 ---
 
 ## Components
@@ -48,45 +46,6 @@ This repository contains two main data engineering projects:
     * Data uploaded to `/data-engineering/dermstore_products.csv` on the HDFS cluster associated with the 'dev' alias.
     * Data inserted into the configured MySQL database tables.
 
-### 2. King County House Price Prediction (`Project_Work.ipynb`)
-
-* **Purpose:** To build and evaluate machine learning models for predicting house prices based on the King County House Sales dataset.
-* **Methodology:**
-    * **Data Loading:** Loads the dataset from `kc_house_data.csv`.
-    * **Exploratory Data Analysis (EDA):** Visualizes data distributions (histograms, box plots) and relationships (scatter plots, pair plot, correlation heatmap).
-    * **Preprocessing:**
-        * Checks for missing values.
-        * Handles outliers in the 'price' column using the Interquartile Range (IQR) method.
-        * Applies log transformation to the 'price' feature to handle skewness.
-        * Uses StandardScaler to scale numerical features for models sensitive to feature scales (like Linear Regression, XGBoost).
-    * **Feature Engineering:** Creates a `price_per_sqft` feature.
-    * **Model Training:** Trains and evaluates the following regression models:
-        * Linear Regression (as a baseline)
-        * Random Forest Regressor
-        * XGBoost Regressor
-    * **Ensemble Method:** Implements a custom weighted average ensemble of the Linear Regression, Random Forest, and XGBoost models.
-    * **Evaluation:** Uses Mean Squared Error (MSE) and R-squared (R2) metrics. Visualizes predictions vs. actual values.
-    * **Feature Importance:** Identifies and plots the top 4 most important features using the Random Forest model.
-* **Dataset:**
-    * King County House Sales dataset.
-    * Source: [https://www.kaggle.com/datasets/harlfoxem/housesalesprediction?resource=download](https://www.kaggle.com/datasets/harlfoxem/housesalesprediction?resource=download)
-    * The notebook expects the file `kc_house_data.csv` to be present in the same directory or uploaded during the session (as indicated by the `google.colab.files.upload()` call).
-* **Dependencies:**
-    * Python 3
-    * Libraries: `pandas`, `numpy`, `scikit-learn`, `matplotlib`, `seaborn`, `xgboost`, `scipy`
-    * Environment: Jupyter Notebook or Google Colab.
-* **Usage:**
-    1.  Ensure all dependencies are installed (`pip install pandas numpy scikit-learn matplotlib seaborn xgboost scipy`).
-    2.  Download the `kc_house_data.csv` file from the Kaggle link provided.
-    3.  Place the CSV file in the same directory as the notebook or be prepared to upload it when prompted (if running in Colab).
-    4.  Open and run the `Project_Work.ipynb` notebook cell by cell in a compatible environment (Jupyter, Colab, etc.).
-* **Output:**
-    * Visualizations (histograms, scatter plots, heatmap, feature importance plot).
-    * Model performance metrics (MSE, R2) printed for each model and the ensemble.
-    * Prediction vs. Actual plot for the XGBoost model.
-
----
-
 ## Setup & Installation
 
 1.  **Clone the repository:**
@@ -102,9 +61,7 @@ This repository contains two main data engineering projects:
     * Ensure you have Google Chrome installed for Selenium.
     * (Optional) Configure `hdfscli` with the 'dev' alias pointing to your HDFS cluster.
     * (Optional) Set up a MySQL database with the required schema and update connection details in `Kavya.py`.
-4.  **Prediction Notebook Specific Setup:**
-    * Download `kc_house_data.csv` from Kaggle.
-
+    * 
 ---
 
 ## How to Run
@@ -114,12 +71,3 @@ This repository contains two main data engineering projects:
     python Kavya.py
     ```
     *Note: This script performs extensive web scraping and database operations.*
-
-* **House Price Prediction:**
-    1.  Start Jupyter Notebook:
-        ```bash
-        jupyter notebook
-        ```
-    2.  Navigate to and open `Project_Work.ipynb`.
-    3.  Run the cells sequentially. Ensure `kc_house_data.csv` is accessible.
-    *(Alternatively, upload and run in Google Colab)*
